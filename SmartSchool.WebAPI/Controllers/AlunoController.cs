@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
@@ -11,43 +12,29 @@ namespace SmartSchool.WebAPI.Controllers
     [Route("api/[controller]")]
     public class AlunoController : ControllerBase
     {
-        public List<Aluno> Alunos = new List<Aluno>(){
-            new Aluno(){
-                Id = 1,
-                Nome = "Linda",
-                Sobrenome = "Cunha",
-                Telefone = "1232121324"
-            },
-            new Aluno(){
-                Id = 2,
-                Nome = "Carla",
-                Sobrenome = "Miranda",
-                Telefone = "999999999"
-            },
-            new Aluno(){
-                Id = 3,
-                Nome = "Jamaica",
-                Sobrenome = "Carla",
-                Telefone = "888888888"
-            }
-        };
+        private readonly SmartContext _context;
 
-        public AlunoController() { }
+        public AlunoController(SmartContext context)
+        {
+            _context = context;
+        } //injetando contexto aluno... Dados banco
+
+
+        // public AlunoController() { }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(Alunos);
+            return Ok(_context.Alunos);
             
         }
-        [HttpGet("byId")]//api/aluno/id
+        [HttpGet("byId")]
         public IActionResult GetById(int id)
         {
-            var aluno = Alunos.FirstOrDefault(x => x.Id == id);
+            var aluno = _context.Alunos.FirstOrDefault(x => x.Id == id);
             
             
             if (aluno == null) return BadRequest("O Aluno não foi encontrado");
-            Console.WriteLine(aluno);
             return Ok(aluno);
             
         }
@@ -55,7 +42,7 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpGet("byName")] //api/aluno/byName?nome=Jamaica&sobrenome=Carla
         public IActionResult GetByName(string nome, string sobrenome)
         {
-            var aluno = Alunos.FirstOrDefault(x => 
+            var aluno = _context.Alunos.FirstOrDefault(x => 
             x.Nome.Contains(nome) && x.Sobrenome.Contains(sobrenome)
             );
             
