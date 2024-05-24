@@ -28,7 +28,7 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(_context.Alunos);
             
         }
-        [HttpGet("byId")]
+        [HttpGet("byId/{id}")]
         public IActionResult GetById(int id)
         {
             var aluno = _context.Alunos.FirstOrDefault(x => x.Id == id);
