@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SmartSchool.WebAPI.Models;
+using SmartSchool.Controllers.Models;
 
 namespace SmartSchool.WebAPI.Data
 {
@@ -23,11 +23,11 @@ namespace SmartSchool.WebAPI.Data
 //============================MONCANDO DADOS ===================================
         modelBuilder.Entity<Professor>()
                 .HasData(new List<Professor>(){
-                    new Professor(1, "Lauro"),
-                    new Professor(2, "Roberto"),
-                    new Professor(3, "Ronaldo"),
-                    new Professor(4, "Rodrigo"),
-                    new Professor(5, "Alexandre"),
+                    new Professor(1, "Lauro", "TEste"),
+                    new Professor(2, "Roberto", "TEste"),
+                    new Professor(3, "Ronaldo", "TEste"),
+                    new Professor(4, "Rodrigo", "TEste"),
+                    new Professor(5, "Alexandre", "TEste"),
                 });
             
             modelBuilder.Entity<Disciplina>()

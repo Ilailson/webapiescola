@@ -1,22 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace SmartSchool.WebAPI.Models
+
+namespace SmartSchool.Controllers.Models
 {
     public class AlunoDisciplina
     {
-        public AlunoDisciplina() {}
-        
-        public AlunoDisciplina(int alunoId, int disciplinaId) 
+        public AlunoDisciplina() { }
+
+        public AlunoDisciplina(int alunoId, int disciplinaId)
         {
             this.AlunoId = alunoId;
             this.DisciplinaId = disciplinaId;
         }
-                public int AlunoId { get; set; }
-        public Aluno Aluno { get; set; } //Retorna objeto... Todas informações aluno
+        public int AlunoId { get; set; }
+        public Aluno Aluno { get; set; }
         public int DisciplinaId { get; set; }
-        public Disciplina Disciplina { get; set; } //Retorna objeto... Todas informações Disciplina
+        public Disciplina Disciplina { get; set; }
     }
 }

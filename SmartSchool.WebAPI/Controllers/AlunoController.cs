@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SmartSchool.Controllers.Models;
 using SmartSchool.WebAPI.Data;
-using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
 {
@@ -55,6 +56,8 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPost] //api/aluno
         public IActionResult Post(Aluno aluno)
         {
+            _context.Add(aluno);
+            _context.SaveChanges();
             return Ok(aluno);
             
         }
@@ -62,6 +65,11 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPut("{id}")] //api/aluno
         public IActionResult Put(int id, Aluno aluno)
         {
+            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            if(alu == null) return BadRequest("Aluno não encontrado");
+
+            _context.Update(aluno);
+            _context.SaveChanges();
             return Ok(aluno);
             
         }
@@ -69,6 +77,18 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPatch("{id}")] //api/aluno
         public IActionResult Patch(int id, Aluno aluno)
         {
+            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            if(alu == null) return BadRequest("Aluno não encontrado");
+
+            Console.WriteLine($"Aluno: {aluno} ");
+            Console.WriteLine($"Id: {aluno.Id}");
+            Console.WriteLine($"Nome: {aluno.Nome}");
+            Console.WriteLine($"Sobrenome: {aluno.Sobrenome}");
+            Console.WriteLine($"Telefone: {aluno.Telefone}");
+
+
+            _context.Update(aluno);
+            _context.SaveChanges();
             return Ok(aluno);
             
         }
@@ -76,7 +96,12 @@ namespace SmartSchool.WebAPI.Controllers
          [HttpDelete("{id}")] //api/aluno
         public IActionResult Delete(int id)
         {
-            return Ok();
+            var aluno = _context.Alunos.FirstOrDefault(x => x.Id == id);
+            if(aluno == null) return BadRequest("Akluno não encontrado");
+
+            _context.Remove(aluno);
+            _context.SaveChanges();
+            return Ok(aluno);
             
         }
     }
