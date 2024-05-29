@@ -14,15 +14,16 @@ namespace SmartSchool.WebAPI.Controllers
     public class AlunoController : ControllerBase
     {
         private readonly SmartContext _context;
+        public readonly IRepository _repo;
 
-        public AlunoController(SmartContext context)
+        public AlunoController(SmartContext context,IRepository repo)//injecao dependencia
         {
+            _repo = repo;
             _context = context;
         } //injetando contexto aluno... Dados banco
 
 
         // public AlunoController() { }
-
         [HttpGet]
         public IActionResult Get()
         {

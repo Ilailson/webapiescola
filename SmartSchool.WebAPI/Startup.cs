@@ -31,6 +31,10 @@ namespace SmartSchool.WebAPI
                 context => context.UseSqlite(Configuration.GetConnectionString("default"))
             );
 
+
+            //toda vez que utilizar o IRepository... Inserindo repository
+            services.AddScoped<IRepository, Repository>(); //injeção dependencia
+
             services.AddControllers();
         }
 
