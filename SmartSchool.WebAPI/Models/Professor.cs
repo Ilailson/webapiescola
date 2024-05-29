@@ -3,14 +3,16 @@ namespace SmartSchool.Controllers.Models
 {
     public class Professor
     {
-        public Professor() { }
+        public Professor() { 
+            Disciplinas = new List<Disciplina>();
+        }
 
         public Professor(int id, string nome, string sobrenome)
         {
             this.Id = id;
             this.Nome = nome;
             this.Sobrenome = sobrenome;
-
+            Disciplinas = new List<Disciplina>();
         }
         public int Id { get; set; }
         public string Nome { get; set; }
