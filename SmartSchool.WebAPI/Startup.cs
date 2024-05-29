@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SmartSchool.WebAPI.Data;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Builder;
 
 namespace SmartSchool.WebAPI
 {
@@ -30,12 +32,17 @@ namespace SmartSchool.WebAPI
             services.AddDbContext<SmartContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("default"))
             );
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
 
 
             //toda vez que utilizar o IRepository... Inserindo repository
             services.AddScoped<IRepository, Repository>(); //injeção dependencia
 
-            services.AddControllers();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
