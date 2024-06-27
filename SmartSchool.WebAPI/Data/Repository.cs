@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.Controllers.Models;
-using SQLitePCL;
 
 namespace SmartSchool.WebAPI.Data
 {
