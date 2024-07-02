@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
 using Newtonsoft.Json;
+using AutoMapper;
 
 namespace SmartSchool.WebAPI
 {
@@ -27,6 +28,8 @@ namespace SmartSchool.WebAPI
                 });
 
 
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //automapper
             //toda vez que utilizar o IRepository... Inserindo repository
             services.AddScoped<IRepository, Repository>(); //injeção dependencia
 

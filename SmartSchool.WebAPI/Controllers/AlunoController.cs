@@ -1,6 +1,8 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartSchool.Controllers.Models;
 using SmartSchool.WebAPI.Data;
+using SmartSchool.WebAPI.Dtos;
 
 namespace SmartSchool.WebAPI.Controllers
 {
@@ -9,10 +11,12 @@ namespace SmartSchool.WebAPI.Controllers
     public class AlunoController : ControllerBase
     {
         public readonly IRepository _repo;
+        private readonly IMapper _mapper;
 
-        public AlunoController(IRepository repo)//injecao dependencia
+        public AlunoController(IRepository repo, IMapper mapper)//injecao dependencia
         {
             _repo = repo;
+            _mapper = mapper;
         } //injetando contexto aluno... Dados banco
 
 
@@ -20,8 +24,9 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _repo.GetAllAlunos(true);
-            return Ok(result);
+            var alunos = _repo.GetAllAlunos(true);
+
+            return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
             
         }
         [HttpGet("{id}")]
