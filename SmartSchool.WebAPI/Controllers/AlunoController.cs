@@ -29,6 +29,13 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
 
         }
+        [HttpGet("getRegister")]
+        public IActionResult GetRegister()
+        {
+            return Ok(new AlunoRegistrarDto());
+        }
+
+
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -44,7 +51,7 @@ namespace SmartSchool.WebAPI.Controllers
 
 
         [HttpPost] //api/aluno
-        public IActionResult Post(AlunoDto model)
+        public IActionResult Post(AlunoRegistrarDto model)
         {
             var aluno = _mapper.Map<Aluno>(model); //mepeado AlunoDto...Aluno
 
@@ -58,7 +65,7 @@ namespace SmartSchool.WebAPI.Controllers
         }
 
         [HttpPut("{id}")] //api/aluno
-        public IActionResult Put(int id, AlunoDto model)
+        public IActionResult Put(int id, AlunoRegistrarDto model)
         {
             var aluno = _repo.GetAlunoByID(id);
             if(aluno == null) return BadRequest("Aluno não encontrado");
@@ -76,7 +83,7 @@ namespace SmartSchool.WebAPI.Controllers
         }
 
         [HttpPatch("{id}")] //api/aluno
-        public IActionResult Patch(int id, AlunoDto model)
+        public IActionResult Patch(int id, AlunoRegistrarDto model)
         {
             var aluno = _repo.GetAlunoByID(id);
             if(aluno == null) return BadRequest("Aluno não encontrado");
