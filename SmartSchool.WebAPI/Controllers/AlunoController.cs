@@ -20,6 +20,10 @@ namespace SmartSchool.WebAPI.Controllers
         } //injetando contexto aluno... Dados banco
 
 
+        /// <summary>
+        /// Retornar todos alunos
+        /// </summary>
+        /// <returns></returns>
         // public AlunoController() { }
         [HttpGet]
         public IActionResult Get()
@@ -29,6 +33,11 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
 
         }
+
+        /// <summary>
+        /// Mostrar parametros a ser preenchido
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getRegister")]
         public IActionResult GetRegister()
         {
@@ -36,6 +45,11 @@ namespace SmartSchool.WebAPI.Controllers
         }
 
 
+        /// <summary>
+        /// Retornar aluno Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
