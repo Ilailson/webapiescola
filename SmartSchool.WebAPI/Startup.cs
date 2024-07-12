@@ -3,6 +3,8 @@ using SmartSchool.WebAPI.Data;
 using Newtonsoft.Json;
 using AutoMapper;
 using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace SmartSchool.WebAPI
 {
@@ -34,14 +36,29 @@ namespace SmartSchool.WebAPI
             //toda vez que utilizar o IRepository... Inserindo repository
             services.AddScoped<IRepository, Repository>(); //injeção dependencia
 
+            services.AddVersionedApiExplorer(options =>{
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            })
+            .AddApiVersioning(options =>{
+                options.DefaultApiVersion = new ApiVersion(1,0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.ReportApiVersions = true;
+            });
+
+
+            var apiProviderDescription = services.BuildServiceProvider().GetService<IApiVersionDescriptionProvider>();
+
             services.AddSwaggerGen(options => 
             {
-                options.SwaggerDoc(
-                    "smartschoolapi",
+                foreach (var description in apiProviderDescription.ApiVersionDescriptions)
+                {
+                    options.SwaggerDoc(
+                    description.GroupName,
                     new Microsoft.OpenApi.Models.OpenApiInfo()
                     {
                         Title = "SmartSchoolAPI",
-                        Version = "1.0",
+                        Version = description.ApiVersion.ToString(),
                         TermsOfService = new Uri("https://siga.iec.gov.br"),
                         Description = "A descrição da WebAPI do SmartSchool",
                         License = new Microsoft.OpenApi.Models.OpenApiLicense
@@ -55,8 +72,10 @@ namespace SmartSchool.WebAPI
                             Email = "ilailson@hotmail.com",
                             Url = new Uri("https://programadamente.com")
                         }
-                    }
-                );
+                    });
+                }
+
+                
 
                 //exibir xml... documentação
                 var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -67,7 +86,10 @@ namespace SmartSchool.WebAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+                               IApplicationBuilder app, 
+                               IWebHostEnvironment env,
+                               IApiVersionDescriptionProvider apiProviderDescription )
         {
             if (env.IsDevelopment())
             {
@@ -81,7 +103,16 @@ namespace SmartSchool.WebAPI
             app.UseSwagger()
                .UseSwaggerUI(options => 
                {
-                options.SwaggerEndpoint("/swagger/smartschoolapi/swagger.json", "smartschoolapi");
+
+                foreach (var description in apiProviderDescription.ApiVersionDescriptions)
+                {
+                     options.SwaggerEndpoint(
+                        $"/swagger/{description.GroupName}/swagger.json", 
+                        description.GroupName.ToUpperInvariant()
+                    );
+                }
+
+               
                 options.RoutePrefix="";
                });
 
