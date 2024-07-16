@@ -1,4 +1,4 @@
-namespace SmartSchool.WebAPI.Dtos
+namespace SmartSchool.WebAPI.v1.Dtos
 {
     public class AlunoDto
     {
@@ -8,7 +8,7 @@ namespace SmartSchool.WebAPI.Dtos
         public string Sobrenome { get; set; }
         public string Telefone { get; set; }
         public int Idade { get; set; }
-        public DateTime DataIni { get; set; } 
+        public DateTime DataIni { get; set; }
         public bool Ativo { get; set; }
     }
 }

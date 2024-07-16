@@ -1,0 +1,59 @@
+<mxfile host="65bd71144e">
+    <diagram id="UM-1YxASU-Djj8z-jX82" name="Page-1">
+        <mxGraphModel dx="2626" dy="883" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="17" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.575;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="404" y="585" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="34" style="edgeStyle=none;html=1;entryX=0.325;entryY=0.017;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="29" target="31" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Model" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="110" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" style="edgeStyle=none;html=1;" parent="1" source="30" target="31" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="ModelDtos" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="464" y="110" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="31" target="36">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="Profiles" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="35" target="38">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="SmartSchool.WebAPI.csproj" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="10" y="720" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="Controller" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="344" y="410" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Startup.cs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="555" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" style="edgeStyle=entityRelationEdgeStyle;html=1;startArrow=none;endArrow=none;segment=10;curved=1;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" edge="1" parent="1" source="39" target="38">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="&lt;div style=&quot;color: rgb(248, 248, 242); background-color: rgb(40, 42, 54); font-family: &amp;quot;Droid Sans Mono&amp;quot;, &amp;quot;monospace&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;span style=&quot;color: #ffb86c;font-style: italic;&quot;&gt;services&lt;/span&gt;&lt;span style=&quot;color: #ff79c6;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;color: #50fa7b;&quot;&gt;AddAutoMapper&lt;/span&gt;(&lt;span style=&quot;color: #8be9fd;&quot;&gt;AppDomain&lt;/span&gt;&lt;span style=&quot;color: #ff79c6;&quot;&gt;.&lt;/span&gt;CurrentDomain&lt;span style=&quot;color: #ff79c6;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;color: #50fa7b;&quot;&gt;GetAssemblies&lt;/span&gt;());&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=50;align=center;verticalAlign=middle;strokeWidth=1;autosize=1;spacing=4;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1,&quot;sourcePerimeterSpacing&quot;:0,&quot;targetPerimeterSpacing&quot;:0};" vertex="1" parent="1">
+                    <mxGeometry x="210" y="555" width="580" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="&lt;div style=&quot;color: rgb(248, 248, 242); background-color: rgb(40, 42, 54); font-family: &amp;quot;Droid Sans Mono&amp;quot;, &amp;quot;monospace&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&amp;lt;&lt;span style=&quot;color: #ff79c6;&quot;&gt;PackageReference&lt;/span&gt; &lt;span style=&quot;color: #50fa7b;font-style: italic;&quot;&gt;Include&lt;/span&gt;=&lt;span style=&quot;color: #e9f284;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #f1fa8c;&quot;&gt;AutoMapper.Extensions.Microsoft.DependencyInjection&lt;/span&gt;&lt;span style=&quot;color: #e9f284;&quot;&gt;&quot;&lt;/span&gt; &lt;span style=&quot;color: #50fa7b;font-style: italic;&quot;&gt;Version&lt;/span&gt;=&lt;span style=&quot;color: #e9f284;&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #f1fa8c;&quot;&gt;7.0.0&lt;/span&gt;&lt;span style=&quot;color: #e9f284;&quot;&gt;&quot;&lt;/span&gt;/&amp;gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;shape=partialRectangle;top=0;left=0;bottom=1;right=0;points=[[0,1],[1,1]];fillColor=none;align=center;verticalAlign=bottom;routingCenterY=0.5;snapToPoint=1;recursiveResize=0;autosize=1;treeFolding=1;treeMoving=1;newEdgeStyle={&quot;edgeStyle&quot;:&quot;entityRelationEdgeStyle&quot;,&quot;startArrow&quot;:&quot;none&quot;,&quot;endArrow&quot;:&quot;none&quot;,&quot;segment&quot;:10,&quot;curved&quot;:1,&quot;sourcePerimeterSpacing&quot;:0,&quot;targetPerimeterSpacing&quot;:0};" vertex="1" parent="1">
+                    <mxGeometry x="240" y="680" width="520" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" value="" style="edgeStyle=entityRelationEdgeStyle;startArrow=none;endArrow=none;segment=10;curved=1;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" target="55" parent="1" source="35">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="110" y="790" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
