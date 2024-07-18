@@ -30,9 +30,9 @@ namespace SmartSchool.WebAPI.v1.Controllers
         /// <returns></returns>
         // public AlunoController() { }
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var alunos = _repo.GetAllAlunos(true);
+            var alunos = await _repo.GetAllAlunosAsync(true);
 
             return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
 

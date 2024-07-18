@@ -30,6 +30,22 @@ namespace SmartSchool.WebAPI.Data
             return (_context.SaveChanges()>0); //verdadeiro... maior 0
         }
 
+        public async Task<Aluno[]> GetAllAlunosAsync(bool includeProfessor = false)
+        {
+            IQueryable<Aluno> query = _context.Alunos;
+
+            if(includeProfessor)
+            {
+                query = query.Include(o => o.AlunosDisciplinas)
+                .ThenInclude(o => o.Disciplina)
+                .ThenInclude(o => o.Professor);
+            }
+
+            query = query.AsNoTracking().OrderBy(o => o.Id);
+            
+            return await query.ToArrayAsync();
+        }
+
         public Aluno[] GetAllAlunos(bool includeProfessor = false)
         {
             IQueryable<Aluno> query = _context.Alunos;
