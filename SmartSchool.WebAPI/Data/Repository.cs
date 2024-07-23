@@ -43,6 +43,21 @@ namespace SmartSchool.WebAPI.Data
             }
 
             query = query.AsNoTracking().OrderBy(o => o.Id);
+
+            if(!string.IsNullOrEmpty(pageParams.Nome))
+                query = query.Where(aluno => aluno.Nome
+                                                  .ToUpper()
+                                                  .Contains(pageParams.Nome.ToUpper()) || 
+                                             aluno.Sobrenome
+                                                  .ToUpper()
+                                                  .Contains(pageParams.Nome.ToUpper()));
+
+            if(pageParams.Matricula > 0)
+                query = query.Where(aluno => aluno.Matricula == pageParams.Matricula);
+
+            if(pageParams.Ativo != null)
+                query = query.Where(aluno => aluno.Ativo == (pageParams.Ativo != 0));
+
             
             // return await query.ToListAsync();
 
