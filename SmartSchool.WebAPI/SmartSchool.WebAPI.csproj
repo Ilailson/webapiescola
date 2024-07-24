@@ -3,8 +3,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>SmartSchool.WebAPI.xml</DocumentationFile>
         <NoWarn>1591;8618</NoWarn>
   </PropertyGroup>
