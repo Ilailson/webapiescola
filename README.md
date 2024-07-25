@@ -22,3 +22,13 @@ docker build -t smartschool:1.0 .
 Alterando para mysql
 dotnet ef migrations add initMysql
 dotnet ef database update
+
+
+====================Front==========================
+nvm list ... Listar versão node
+nvm use v12.16.3...Mudando a versão node.
+
+ng version ...Versão Angular
+
+ng new... Criar projeto angular
+ng serve... sobe a aplicação
