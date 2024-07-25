@@ -17,3 +17,8 @@ http://localhost:5000/api/v1/aluno?pageNumber=1&pageSize=10&ativo=1&nome=ma&matr
 
 Criar imagem da api
 docker build -t smartschool:1.0 .
+
+
+Alterando para mysql
+dotnet ef migrations add initMysql
+dotnet ef database update
