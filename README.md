@@ -32,3 +32,16 @@ ng version ...Versão Angular
 
 ng new... Criar projeto angular
 ng serve... sobe a aplicação
+
+
+npm install bootstrap
+npm install ngx-bootstrap --legacy-peer-deps
+npm i ngx-toastr --legacy-peer-deps
+npm install ngx-spinner --legacy-peer-deps
+
+
+https://github.com/scttcper/ngx-toastr/
+https://valor-software.com/ngx-bootstrap/#/documentation#installation
+https://www.npmjs.com/package/ngx-toastr
+https://github.com/scttcper/ngx-toastr/releases
+https://github.com/vsandrade/Youtube-Angular-NetCoreAPI/tree/master/SmartSchool
