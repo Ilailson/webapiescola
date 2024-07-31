@@ -13,6 +13,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { TituloComponent } from './components/shared/titulo/titulo.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,10 +30,15 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     TituloComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     NgxSpinnerModule,
     BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 3500,
       positionClass: 'toast-bottom-right',

@@ -45,3 +45,8 @@ https://valor-software.com/ngx-bootstrap/#/documentation#installation
 https://www.npmjs.com/package/ngx-toastr
 https://github.com/scttcper/ngx-toastr/releases
 https://github.com/vsandrade/Youtube-Angular-NetCoreAPI/tree/master/SmartSchool
+
+
+Manter todas as dependencias sem atualizar.
+npm install --legacy-peer-deps
+ng serve
