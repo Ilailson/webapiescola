@@ -87,6 +87,8 @@ namespace SmartSchool.WebAPI
                 var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
                 options.IncludeXmlComments(xmlCommentsFullPath);
             });
+
+            services.AddCors();
             
         }
 
@@ -104,6 +106,9 @@ namespace SmartSchool.WebAPI
             // app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.useCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
 
             app.UseSwagger()
                .UseSwaggerUI(options => 

@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
-
 ];
 
 // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' } 
