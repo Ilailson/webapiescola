@@ -107,7 +107,7 @@ namespace SmartSchool.WebAPI
 
             app.UseRouting();
 
-            app.useCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 
             app.UseSwagger()
