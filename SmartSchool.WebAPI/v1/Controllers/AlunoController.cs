@@ -106,7 +106,7 @@ namespace SmartSchool.WebAPI.v1.Controllers
         }
 
         [HttpPatch("{id}")] //api/aluno
-        public IActionResult Patch(int id, AlunoRegistrarDto model)
+        public IActionResult Patch(int id, AlunoPatchDto model)
         {
             var aluno = _repo.GetAlunoByID(id);
             if (aluno == null) return BadRequest("Aluno não encontrado");
@@ -123,7 +123,7 @@ namespace SmartSchool.WebAPI.v1.Controllers
                 Console.WriteLine($"Sobrenome: {aluno.Sobrenome}");
                 Console.WriteLine($"Telefone: {aluno.Telefone}");
 
-                return Created($"/api/aluno/{model.Id}", _mapper.Map<AlunoDto>(aluno)); //Mapeado Aluno...AlunoDto
+                return Created($"/api/aluno/{model.Id}", _mapper.Map<AlunoPatchDto>(aluno)); //Mapeado Aluno...AlunoDto
             }
 
             return BadRequest("Aluno não atualizado");
