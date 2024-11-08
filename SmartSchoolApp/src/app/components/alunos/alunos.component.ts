@@ -173,7 +173,7 @@ export class AlunosComponent implements OnInit, OnDestroy {
 
   carregarAlunos(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
-    const id = idParam !== null ? +idParam : 0;
+    const alunoId = idParam !== null ? +idParam : 0;
   
     this.spinner.show();
     this.alunoService.getAll()
@@ -181,10 +181,10 @@ export class AlunosComponent implements OnInit, OnDestroy {
       .subscribe((alunos: Aluno[]) => {
         this.alunos = alunos;
   
-        if (id > 0) {
-          const alunoEncontrado = this.alunos.find(aluno => aluno.id === id);
+        if (alunoId > 0) {
+          const alunoEncontrado = this.alunos.find(aluno => aluno.id === alunoId);
           if (alunoEncontrado) {
-            this.alunoSelect(alunoEncontrado);
+            this.alunoSelect(alunoEncontrado.id);
           }
         }
   
@@ -198,10 +198,21 @@ export class AlunosComponent implements OnInit, OnDestroy {
   }
   
 
-  alunoSelect(aluno: Aluno): void {
+  alunoSelect(alunoId: number): void {
     this.modeSave = 'put';
-    this.alunoSelectional = aluno;
-    this.alunoForm.patchValue(aluno);
+    this.alunoService.getById(alunoId).subscribe(
+      (alunoReturn) => {
+        this.alunoSelectional = alunoReturn;
+        this.alunoForm.patchValue(this.alunoSelectional);
+      },
+      (error) => {
+        this.toastr.error('Alunos não carregados!');
+        console.log(error);
+        this.spinner.hide() 
+      },
+      () => this.spinner.hide()
+    );
+    
   }
 
   voltar(): void {
