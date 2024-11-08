@@ -129,11 +129,31 @@ namespace SmartSchool.WebAPI.v1.Controllers
             return BadRequest("Aluno não atualizado");
         }
 
+        [HttpPatch("{id}/trocarEstado")] //api/aluno/{id}/trocarEstado
+        public IActionResult trocarEstado(int id, TrocarEstadoDto trocarEstado)
+        {
+            var aluno = _repo.GetAlunoByID(id);
+            
+            if (aluno == null) return BadRequest("Aluno não encontrado");
+
+            aluno.Ativo = trocarEstado.Estado;
+
+            _repo.Update(aluno);
+
+            if (_repo.SaveChanges())
+            {
+                var msn = aluno.Ativo ? "ativado" : "desativado";
+                return Ok(new { message = $"Aluno {msn} com sucesso"});
+            }
+
+            return BadRequest("Aluno não atualizado");
+        }
+
         [HttpDelete("{id}")] //api/aluno
         public IActionResult Delete(int id)
         {
             var aluno = _repo.GetAlunoByID(id);
-            if (aluno == null) return BadRequest("Akluno não encontrado");
+            if (aluno == null) return BadRequest("Aluno não encontrado");
 
             _repo.Delete(aluno);
             if (_repo.SaveChanges())

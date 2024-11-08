@@ -83,7 +83,8 @@ export class AlunosComponent implements OnInit, OnDestroy {
       id: [0],
       nome: ['', Validators.required],
       sobrenome: ['', Validators.required],
-      telefone: ['', Validators.required]
+      telefone: ['', Validators.required],
+      ativo: []
     });
   }
 
@@ -113,6 +114,21 @@ export class AlunosComponent implements OnInit, OnDestroy {
 
   //   }
   // }
+
+  trocarEstado(aluno: Aluno){
+        this.alunoService.trocarEstado(aluno.id, !aluno.ativo )
+        .pipe(takeUntil(this.unsubscriber))
+        .subscribe(
+          (resp) => {
+              console.log(resp)
+            this.carregarAlunos();
+            this.toastr.success('Aluno salvo com sucesso!');
+          }, (error: any) => {
+            this.toastr.error(`Erro: Aluno não pode ser salvo!`);
+            console.error(error);
+          }, () => this.spinner.hide()
+        );
+  } 
 
   saveAluno(): void {
     if (this.alunoForm.valid) {
