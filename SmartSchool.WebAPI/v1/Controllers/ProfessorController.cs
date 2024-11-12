@@ -52,7 +52,7 @@ namespace SmartSchool.WebAPI.v1.Controllers
         [HttpGet("byaluno/{alunoId}")]
         public IActionResult GetByAlunoId(int alunoId)
         {
-            var Professores = _repo.GetProfessoresByAlunoID(alunoId, false);
+            var Professores = _repo.GetProfessoresByAlunoID(alunoId, true);
 
             if (Professores == null) return BadRequest("O Professores não encontrados");
 
