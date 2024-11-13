@@ -50,3 +50,6 @@ https://github.com/vsandrade/Youtube-Angular-NetCoreAPI/tree/master/SmartSchool
 Manter todas as dependencias sem atualizar.
 npm install --legacy-peer-deps
 ng serve
+
+Angular youtube.
+https://www.youtube.com/watch?v=4k8aCkFpHk0&list=PLWNaqtzH6CWSbIYlgMDQZNrwDG3gHw7wa&index=1

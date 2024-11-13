@@ -19,14 +19,18 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfessoresAlunosComponent } from './components/alunos/professores-alunos/professores-alunos.component';
+import { AlunosProfessoresComponent } from './components/professores/alunos-professores/alunos-professores.component';
+import { ProfessorDetalheComponent } from './components/professores/professor-detalhe/professor-detalhe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlunosComponent,
+    AlunosProfessoresComponent,
     PerfilComponent,
     ProfessoresAlunosComponent,
     ProfessoresComponent,
+    ProfessorDetalheComponent,
     DashboardComponent,
     NavComponent,
     TituloComponent
