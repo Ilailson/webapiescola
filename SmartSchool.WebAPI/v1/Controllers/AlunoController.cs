@@ -43,6 +43,14 @@ namespace SmartSchool.WebAPI.v1.Controllers
 
         }
 
+        
+        [HttpGet("ByDisciplina/{id}")]
+        public async Task<IActionResult> GetByDisciplinaId(int id)
+        {
+            var result = await _repo.GetAllAlunosByDisciplinaIdAsync(id, false);
+            return Ok(result); // Corrigido para usar Ok() com letra minúscula
+        }
+
         /// <summary>
         /// Mostrar parametros a ser preenchido
         /// </summary>
