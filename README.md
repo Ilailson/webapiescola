@@ -38,6 +38,7 @@ npm install bootstrap
 npm install ngx-bootstrap --legacy-peer-deps
 npm i ngx-toastr --legacy-peer-deps
 npm install ngx-spinner --legacy-peer-deps
+npm install -g @angular/cli@16
 
 
 https://github.com/scttcper/ngx-toastr/

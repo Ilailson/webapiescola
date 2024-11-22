@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfessoresAlunosComponent } from './components/alunos/professores-alunos/professores-alunos.component';
 import { AlunosProfessoresComponent } from './components/professores/alunos-professores/alunos-professores.component';
 import { ProfessorDetalheComponent } from './components/professores/professor-detalhe/professor-detalhe.component';
+import { AlunoService } from './services/aluno.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { ProfessorDetalheComponent } from './components/professores/professor-de
     TituloComponent
   ],
   imports: [
+    PaginationModule.forRoot(),
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,

@@ -10,6 +10,9 @@ import { Subject } from 'rxjs';
 import { ProfessorService } from '../../services/professor.service';
 import { Professor } from '../../models/Professor';
 import { ActivatedRoute } from '@angular/router';
+import { PaginatedResult, Pagination } from 'src/app/models/Pagination';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+
 
 @Component({
   selector: 'app-alunos',
@@ -17,7 +20,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./alunos.component.css']
 })
 export class AlunosComponent implements OnInit, OnDestroy {
-
   public modalRef!: BsModalRef;
   public alunoForm!: FormGroup;
   public titulo = 'Alunos';
@@ -31,6 +33,8 @@ export class AlunosComponent implements OnInit, OnDestroy {
   public aluno!: Aluno;
   public msnDeleteAluno!: string;
   public modeSave = 'post';
+
+  pagination!: Pagination;
 
   constructor(
     private alunoService: AlunoService,
@@ -68,8 +72,8 @@ export class AlunosComponent implements OnInit, OnDestroy {
     );
   }
 
-
   ngOnInit(): void {
+    this.pagination = { currentPage: 1, pageItems: 4} as Pagination;
     this.carregarAlunos();
   }
 
@@ -88,39 +92,11 @@ export class AlunosComponent implements OnInit, OnDestroy {
     });
   }
 
-  
-
-  // saveAluno(): void {
-  //   if (this.alunoForm.valid) {
-  //     this.spinner.show();
-
-  //     if (this.modeSave === 'post') {
-  //       this.aluno = {...this.alunoForm.value};
-  //     } else {
-  //       this.aluno = {id: this.alunoSelectional.id, ...this.alunoForm.value};
-  //     }
-
-  //     this.alunoService[this.modeSave](this.aluno)
-  //       .pipe(takeUntil(this.unsubscriber))
-  //       .subscribe(
-  //         () => {
-  //           this.carregarAlunos();
-  //           this.toastr.success('Aluno salvo com sucesso!');
-  //         }, (error: any) => {
-  //           this.toastr.error(`Erro: Aluno não pode ser salvo!`);
-  //           console.error(error);
-  //         }, () => this.spinner.hide()
-  //       );
-
-  //   }
-  // }
-
   trocarEstado(aluno: Aluno){
         this.alunoService.trocarEstado(aluno.id, !aluno.ativo )
         .pipe(takeUntil(this.unsubscriber))
         .subscribe(
           (resp) => {
-              console.log(resp)
             this.carregarAlunos();
             this.toastr.success('Aluno salvo com sucesso!');
           }, (error: any) => {
@@ -128,12 +104,12 @@ export class AlunosComponent implements OnInit, OnDestroy {
             console.error(error);
           }, () => this.spinner.hide()
         );
-  } 
+  }
 
   saveAluno(): void {
     if (this.alunoForm.valid) {
       this.spinner.show();
-  
+
       if (this.modeSave === 'post') {
         this.aluno = {...this.alunoForm.value};
         this.alunoService.post(this.aluno)
@@ -164,46 +140,26 @@ export class AlunosComponent implements OnInit, OnDestroy {
       }
     }
   }
-  
-
-  // carregarAlunos(): void {
-  //   const id = +this.route.snapshot.paramMap.get('id');
-
-  //   this.spinner.show();
-  //   this.alunoService.getAll()
-  //     .pipe(takeUntil(this.unsubscriber))
-  //     .subscribe((alunos: Aluno[]) => {
-  //       this.alunos = alunos;
-
-  //       if (id > 0) {
-  //         this.alunoSelect(this.alunos.find(aluno => aluno.id === id));
-  //       }
-
-  //       this.toastr.success('Alunos foram carregado com Sucesso!');
-  //     }, (error: any) => {
-  //       this.toastr.error('Alunos não carregados!');
-  //       console.log(error);
-  //     }, () => this.spinner.hide()
-  //   );
-  // }
 
   carregarAlunos(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
-    const alunoId = idParam !== null ? +idParam : 0;
-  
+    const alunoId = idParam != null ? +idParam : 0;
+
     this.spinner.show();
-    this.alunoService.getAll()
+    // passando por parametro pagina e numero de parametro por pagina
+    this.alunoService.getAll(this.pagination.currentPage, this.pagination.pageItems )
       .pipe(takeUntil(this.unsubscriber))
-      .subscribe((alunos: Aluno[]) => {
-        this.alunos = alunos;
-  
+      .subscribe((alunos: PaginatedResult<Aluno[]>) => {
+        this.alunos = alunos.result;
+        this.pagination = alunos.pagination;
+
         if (alunoId > 0) {
           const alunoEncontrado = this.alunos.find(aluno => aluno.id === alunoId);
           if (alunoEncontrado) {
             this.alunoSelect(alunoEncontrado.id);
           }
         }
-  
+
         this.toastr.success('Alunos foram carregados com sucesso!');
       }, (error: any) => {
         this.toastr.error('Alunos não carregados!');
@@ -212,7 +168,11 @@ export class AlunosComponent implements OnInit, OnDestroy {
       }, () => this.spinner.hide()
     );
   }
-  
+
+  pageChanged(event: PageChangedEvent): void {
+    this.pagination.currentPage = event.page;
+    this.carregarAlunos();
+  }
 
   alunoSelect(alunoId: number): void {
     this.modeSave = 'patch';
@@ -224,11 +184,11 @@ export class AlunosComponent implements OnInit, OnDestroy {
       (error) => {
         this.toastr.error('Alunos não carregados!');
         console.log(error);
-        this.spinner.hide() 
+        this.spinner.hide()
       },
       () => this.spinner.hide()
     );
-    
+
   }
 
   voltar(): void {

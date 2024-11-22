@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
+// Paginação
 namespace SmartSchool.WebAPI.Helpers
 {
     public static class Extensions
@@ -14,7 +15,7 @@ namespace SmartSchool.WebAPI.Helpers
             camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver(); //transformar... Caixa baixa
 
             response.Headers.Add("Pagination", JsonConvert.SerializeObject(paginationHeader, camelCaseFormatter));
-            response.Headers.Add("Access-Control-Expose-Header", "Pagination");
+            response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
         }
     }
 }
